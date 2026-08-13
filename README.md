@@ -12,7 +12,6 @@
 | [phase3-yolov8](phase3-yolov8/) | YOLOv8 复现 | 结构图 + 真实训练 mAP50 80.3% |
 | [phase4-yolo-improvements](phase4-yolo-improvements/) | YOLO 改进 | SE/CBAM 注意力消融实验 |
 | [phase5-advanced](phase5-advanced/) | 三方向进阶 | DDPM 扩散模型 + ONNX 部署 + LoRA 微调 |
-| [phase6-materials](phase6-materials/) | 面试材料 | 问答笔记 + 自述 + 技术报告 + PPT |
 
 ## 技术栈
 
@@ -26,7 +25,6 @@
 - 想看「YOLOv8 结构图」→ `phase3-yolov8/analysis/yolov8_architecture.png`
 - 想看「注意力消融结论」→ `phase4-yolo-improvements/report/technical_report.md`
 - 想看「噪声如何变成图像」→ `phase5-advanced/ddpm/diffusion_process.png`
-- 想准备面试 → `phase6-materials/interview-qa.md`
 
 ## 环境复现
 
