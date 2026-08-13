@@ -1,7 +1,6 @@
 # 第三阶段：YOLOv8 完整复现
 
 > 核心阶段：读懂 YOLOv8 源码结构、跑通完整训练流程、画出结构图。
-> 面试目标——大多数人只会 `yolo train` 跑个 demo，你能画结构图、讲清三个模块、说出训练细节。
 
 ## 目录结构
 
@@ -54,7 +53,7 @@ python3 train.py --data ../dataset/data.yaml --model yolov8n.pt --epochs 100
 cd ../analysis && python3 inspect_yolov8.py && python3 draw_architecture.py
 ```
 
-## 踩坑记录（面试可讲的真实经历）
+## 踩坑记录
 
 1. **预训练权重下载失败**：`yolov8n.pt` 从 github 下载时 Curl 返回 56（网络中断）。
    排查发现是暂时网络抖动，用 `curl -L` 手动重试成功。**教训**：训练前先确认权重文件
@@ -67,10 +66,3 @@ cd ../analysis && python3 inspect_yolov8.py && python3 draw_architecture.py
 
 3. **save_dir 嵌套**：ultralytics 的 `project` 参数会自动追加 task 目录（detect），
    传 `project="runs/detect"` 会变成 `runs/detect/runs/detect/train`。改成 `project="runs"`。
-
-## 面试自述要点
-
-> "我把 YOLOv8 拆成三段看：Backbone（CSPDarknet，核心是 C2f 模块）+ Neck（PAN-FPN 多尺度
-> 融合）+ Head（anchor-free 解耦头）。我画了张结构图，标出了三个尺度 P3/P4/P5 分别检测
-> 小/中/大目标。然后我在 COCO128 上从零训练了 30 轮，mAP50 到 80%，训练曲线和混淆矩阵
-> 都保存了。过程中我还踩了预训练权重下载失败的坑，学会了怎么验证权重是否真的加载。"
