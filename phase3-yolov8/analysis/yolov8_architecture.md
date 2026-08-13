@@ -20,8 +20,6 @@ Neck（颈部）——把 3 个尺度的特征互相融合，让大目标和小�
 Head（检测头）——在每个尺度上预测"框在哪 + 是什么类别"
 ```
 
-面试时你可以先画这个"三段式"，再逐段展开。
-
 ## 二、Backbone：提取特征
 
 Backbone 是 CSPDarknet 风格，由 **Conv**、**C2f**、**SPPF** 三种模块堆叠而成，
@@ -42,7 +40,7 @@ Backbone 是 CSPDarknet 风格，由 **Conv**、**C2f**、**SPPF** 三种模块�
 | 8 | C2f ×3 | 20×20 | 1024 |
 | 9 | SPPF | 20×20 | 1024 |
 
-三个关键模块（面试重点）：
+三个关键模块：
 
 - **Conv** = 卷积 Conv2d + 批归一化 BatchNorm + SiLU 激活函数。源码里 `forward`
   就是 `self.act(self.bn(self.conv(x)))` 一行。
@@ -84,7 +82,7 @@ Head 里的 **Detect** 模块做两件事（这是 YOLOv8 相比前代的两大�
 每个网格点输出：`4（框坐标） + nc（类别数）` 个数，在三个尺度上分别预测，
 最后用 NMS（非极大值抑制）去掉重复框。
 
-## 五、输入输出维度总结（面试画图用）
+## 五、输入输出维度总结
 
 ```
 输入: [B, 3, 640, 640]
@@ -100,14 +98,6 @@ P5: [B, 1024, 20, 20]  ← 大目标
 > 注：上面通道数是 `scale=l`（yolov8l）的数值；`yolov8n` 会按 width 因子 0.25 缩放，
 > 结构不变、通道更少，所以更轻更快（315 万参数，8.9 GFLOPS）。
 
-## 六、面试 3 分钟自述模板
-
-"YOLOv8 可以分成三段。Backbone 用 CSPDarknet，核心是 C2f 模块——它把特征拆成两半、
-一半直连一半过瓶颈再拼回来，比 YOLOv5 的 C3 更轻量、梯度信息保留更好；末端加 SPPF
-用小计算量扩大感受野。Neck 是 PAN-FPN，自顶向下传语义、自底向上传定位，输出 P3/P4/P5
-三个尺度分别检测小/中/大目标。Head 是 anchor-free 的解耦头，不再用预设锚框，分类和
-回归分开预测。这套设计让它又快又准，所以是实时的标杆。"
-
 ---
 
-配套：`draw_architecture.py` 生成 `yolov8_architecture.png` 结构图，面试时直接展示。
+配套：`draw_architecture.py` 生成 `yolov8_architecture.png` 结构图。
