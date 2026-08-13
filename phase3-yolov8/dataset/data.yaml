@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+# data.yaml —— 自建数据集配置文件（YOLO 格式）
+
+# 数据集根目录（下面用 COCO128 做示例；换成你自己的数据集路径即可）
+# 目录结构要求：
+#   path/
+#     images/
+#       train/   （训练图片）
+#       val/     （验证图片）
+#     labels/
+#       train/   （每张图对应的 .txt 标注）
+#       val/
+path: ../datasets/coco128   # 改成你的数据集绝对路径，例如 /mnt/f/yolo/phase3-yolov8/dataset/mydata
+
+train: images/train2017    # 训练图片子目录（相对 path）
+val: images/train2017      # 验证图片子目录（相对 path）
+
+# 类别：一行一个，顺序要和标注文件里的 class id 对应
+names:
+  0: person
+  1: bicycle
+  2: car
+  # ... 更多类别往下加
+
+# 说明：如果你是自己用 LabelImg 标注的，通常类别更少，例如：
+# names:
+#   0: helmet        # 安全帽
+#   1: person        # 人
+#   2: without-helmet  # 未戴安全帽

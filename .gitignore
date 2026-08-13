@@ -1,0 +1,31 @@
+# ===== 数据集（可通过脚本重新下载）=====
+**/data/
+**/datasets/
+**/downloads/
+
+# ===== 模型权重（可通过代码重新训练）=====
+*.pt
+*.onnx
+*.engine
+*.pth
+
+# ===== 训练批量可视化（保留 results.png / 混淆矩阵 / PR曲线等关键结果）=====
+**/runs/**/weights/
+**/train_batch*.jpg
+**/val_batch*.jpg
+**/labels.jpg
+
+# ===== Python 缓存 =====
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# ===== 日志与临时文件 =====
+*.log
+.DS_Store
+Thumbs.db
+
+# ===== Jupyter =====
+.venv/
+venv/

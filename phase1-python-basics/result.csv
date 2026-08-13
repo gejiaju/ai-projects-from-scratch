@@ -1,0 +1,3 @@
+model,accuracy,epoch
+MLP,97.2,10
+CNN,99.1,10
